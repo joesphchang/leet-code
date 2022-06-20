@@ -51,16 +51,68 @@ A word is a maximal substring consisting of non-space characters only.
 
 ```
 var lengthOfLastWord = function(s) {
+    // create variable wordLength and have to set to 0
     let wordLength = 0;
+    // create variable count and set to 0
     let count = 0;
+    // loop through length of s
     for (let i = 0; i < s.length; i++) {
+        // if s[i] equals an empty string
         if (s[i] === " ") 
+        // have count = 0
         count = 0
         else
+        // have count add
         count++
+        // if count is less than 0
         if (count > 0) 
+        // set wordLength to count
         wordLength = count
     }
+    // return wordLength 
     return wordLength;
 };
+```
+
+## Valid Anagram 
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+```
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+        
+        countS, countT = {}, {}
+        
+        for i in range(len(s)):
+            countS[s[i]] = 1 + countS.get(s[i], 0)
+            countT[t[i]] = 1 + countT.get(t[i], 0)
+        for c in countS:
+            if countS[c] != countT.get(c, 0):
+                return False
+        
+        return True
+```
+
+```
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return Counter(s) == Counter(t)
+```
+
+## Contains Duplicate
+
+```
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        hashset = set()
+        
+        for n in nums:
+            if n in hashset:
+                return True
+            hashset.add(n)
+        return False
 ```
